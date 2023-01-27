@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Commons\Exceptions\" />
-    <Folder Include="CQRS\Queries\" />
   </ItemGroup>
 
 </Project>

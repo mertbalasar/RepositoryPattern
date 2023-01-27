@@ -12,7 +12,7 @@ namespace RepositoryPattern.Application.Commons.Abstractions.Data.Commons
         string Message { get; set; }
     }
 
-    public interface IRepositoryResponse<T>
+    public interface IRepositoryResponse<T> : IRepositoryResponse
     {
         T? Result { get; set; }
     }
