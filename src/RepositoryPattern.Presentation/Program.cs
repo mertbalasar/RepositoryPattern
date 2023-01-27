@@ -1,3 +1,5 @@
+using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RepositoryPattern.Application.Commons.Abstractions.Data.Commons;
 using RepositoryPattern.Application.Commons.Abstractions.Data.ContextRepositories;
@@ -11,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMediatR(typeof(Program));
+var assembly = AppDomain.CurrentDomain.Load("RepositoryPattern.Application");
+builder.Services.AddMediatR(assembly);
 
 #region [ DATABASE ]
 builder.Services.AddTransient(typeof(IMainContextRepository<>), typeof(MainContextRepository<>));
