@@ -7,6 +7,7 @@ using RepositoryPattern.Application.Commons.Abstractions.Data.EntityRepositories
 using RepositoryPattern.Infrastructure.Persistence;
 using RepositoryPattern.Infrastructure.Persistence.ContextRepositories;
 using RepositoryPattern.Infrastructure.Persistence.UnitOfWork;
+using RepositoryPattern.Presentation.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 #region [ SERVICES ]
@@ -19,8 +20,7 @@ var assembly = AppDomain.CurrentDomain.Load("RepositoryPattern.Application");
 builder.Services.AddMediatR(assembly);
 
 #region [ DATABASE ]
-builder.Services.AddTransient(typeof(IMainContextRepository<>), typeof(MainContextRepository<>));
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddDatabase();
 builder.Services.AddDbContext<MainContext>(option =>
 {
     option.UseSqlServer(
